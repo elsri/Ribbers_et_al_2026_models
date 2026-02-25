@@ -92,19 +92,5 @@ def PrecipitationAnnual(dir_precipitation_annual, HCLIM3=False):
     with Dataset(dir_precipitation_annual) as file_precipitation_annual:
         return file_precipitation_annual.variables["pr"][0, :, :]
 
-def DurationDaylight(latitude, day):
-    phi = math.radians(latitude) #*0.01745 is degree to radian, so using builtin function instead
-    solar_declination = 0.41008 * math.sin(math.radians((day + 1 - 82)))
-    duration_daylight = 0
-    if (math.tan(phi) * math.tan(solar_declination)) < -1:
-        duration_daylight = 0
-    elif (math.tan(phi) * math.tan(solar_declination)) > 1:
-        duration_daylight = 24
-    else:
-        duration_daylight = 24 * (
-            1 - (math.acos(math.tan(phi) * math.tan(solar_declination)) / 3.1416)
-        )
-    return duration_daylight
-
 
 
