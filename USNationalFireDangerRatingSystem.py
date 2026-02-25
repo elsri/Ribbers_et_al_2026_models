@@ -259,6 +259,7 @@ for year in years:
     temperature_mean_input = TemperatureMean(
         os.path.join(f"{datadir}/input/HCLIM3output/{year}/tas_daymean_{year}_Fennoscandia.nc"),
     )
+	temperature_mean_input = temperature_mean_input * (9 / 5) + 32 #Conversion Celsius to Fahrenheit
     #
     # Numba do not support masked arrays.
     # We will convert these to regulary ndarray.
